@@ -10,13 +10,12 @@ import static java.lang.Double.POSITIVE_INFINITY;
 public class User {
 	public static void main(String[] args) {
 		Interval negativeNumbers = anInterval()
-				.from(NEGATIVE_INFINITY, INCLUSIVE)
-				.to(0., EXCLUSIVE)
-				.build();
+				.from(NEGATIVE_INFINITY)
+				.to(0., EXCLUSIVE);
 
-		Interval positiveNumbers = anInterval().from(0., EXCLUSIVE).to(POSITIVE_INFINITY, INCLUSIVE).build();
+		Interval positiveNumbers = anInterval().from(0., EXCLUSIVE).to(POSITIVE_INFINITY);
 
-		Interval wholeNumberLine = anInterval().from(NEGATIVE_INFINITY, INCLUSIVE).to(POSITIVE_INFINITY, INCLUSIVE).build();
+		Interval wholeNumberLine = anInterval().from(NEGATIVE_INFINITY).to(POSITIVE_INFINITY);
 
 		double lb = negativeNumbers.getLowerBound();
 		boolean lbi = negativeNumbers.isLowerBoundIncluded();
@@ -30,7 +29,6 @@ public class User {
 
 		Interval nr = anInterval()
 				.from(lowerBound, lowerBoundType)
-				.to(upperBound, upperBoundType)
-				.build();
+				.to(upperBound, upperBoundType);
 	}
 }

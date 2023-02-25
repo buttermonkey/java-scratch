@@ -28,23 +28,33 @@ public class Interval {
 		INCLUSIVE, EXCLUSIVE
 	}
 
-	public static Builder anInterval() {
+	public static RequireFrom anInterval() {
 		return new Builder();
 	}
-	public static class Builder {
-		private Bound lowerBound = null;
-		private Bound upperBound = null;
+	private static class Builder implements RequireFrom, RequireTo {
+		private Bound lowerBound;
 
-		public Builder from(double value, BoundType boundType) {
+		@Override
+		public RequireTo from(double value, BoundType boundType) {
 			lowerBound = Bound.createLowerBound(value, boundType == BoundType.INCLUSIVE);
 			return this;
 		}
-		public Builder to(double value, BoundType boundType) {
-			upperBound = Bound.createUpperBound(value, boundType == BoundType.INCLUSIVE);
-			return this;
-		}
-		public Interval build() {
+		@Override
+		public Interval to(double value, BoundType boundType) {
+			Bound upperBound = Bound.createUpperBound(value, boundType == BoundType.INCLUSIVE);
 			return new Interval(lowerBound, upperBound);
+		}
+	}
+	public interface RequireFrom {
+		RequireTo from(double value, BoundType boundType);
+		default RequireTo from(double value) {
+			return from(value, BoundType.INCLUSIVE);
+		}
+	}
+	public interface RequireTo {
+		Interval to(double value, BoundType boundType);
+		default Interval to(double value) {
+			return to(value, BoundType.INCLUSIVE);
 		}
 	}
 
