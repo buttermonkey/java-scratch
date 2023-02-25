@@ -1,6 +1,7 @@
 package rawlists;
 
 import java.util.Collection;
+import java.util.function.Function;
 
 public class SetOfStrings implements ISet {
 	private final SetImpl<String> set;
@@ -16,5 +17,10 @@ public class SetOfStrings implements ISet {
 			return set.contains(stringData);
 		else
 			return false;
+	}
+
+	@Override
+	public void parse(String value) {
+		set.parse(value, Function.identity());
 	}
 }

@@ -17,4 +17,9 @@ public class SetOfDoubles implements ISet {
 		else
 			return false;
 	}
+
+	@Override
+	public void parse(String value) {
+		set.parse(value, Double::valueOf);
+	}
 }

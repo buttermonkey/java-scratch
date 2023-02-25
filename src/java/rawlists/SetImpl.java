@@ -3,6 +3,7 @@ package rawlists;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.function.Function;
 
 public class SetImpl<T> {
 	Set<T> elements = new HashSet<>();
@@ -28,5 +29,10 @@ public class SetImpl<T> {
 
 	public boolean contains(Collection<T> collection) {
 		return elements.containsAll(collection);
+	}
+
+	public void parse(String data, Function<String, T> valueMapper) {
+		String value = data.trim();
+		elements.add(valueMapper.apply(value));
 	}
 }

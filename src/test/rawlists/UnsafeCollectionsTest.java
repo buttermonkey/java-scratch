@@ -2,6 +2,7 @@ package rawlists;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -49,6 +50,28 @@ class UnsafeCollectionsTest {
 		assertFalse(setOfStrings.contains(List.of(1., 0.)));
 
 //		assertFalse(setOfStrings.contains(List.of(new FakeType())));
+	}
+
+	@Test
+	void parseWorksForSetOfStrings() {
+		ISet setOfStrings = new SetOfStrings(new ArrayList<>());
+
+		setOfStrings.parse("Markus");
+		setOfStrings.parse(" Karin ");
+
+		assertTrue(setOfStrings.contains("Markus"));
+		assertTrue(setOfStrings.contains("Karin"));
+	}
+
+	@Test
+	void parseWorksForSetOfDoubles() {
+		ISet setOfDoubles = new SetOfDoubles(new ArrayList<>());
+
+		setOfDoubles.parse("3.14");
+		setOfDoubles.parse(" 1 ");
+
+		assertTrue(setOfDoubles.contains(3.14));
+		assertTrue(setOfDoubles.contains(1.));
 	}
 
 	private static class FakeType {
