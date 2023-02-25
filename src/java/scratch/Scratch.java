@@ -2,6 +2,6 @@ package scratch;
 
 public class Scratch {
 	public static void main(String[] args) {
-		System.out.println("Hello, bloody Worlds!");
+		System.out.println("Hello, Worlds!");
 	}
 }
