@@ -12,7 +12,7 @@ public class SetOfDoubles implements ISet {
 	public boolean contains(Object data) {
 		if (data instanceof Collection<?> collection)
 			return set.contains((Collection<Double>) collection);
-		else if (data instanceof Double doubleData)
+		else if (data instanceof Double doubleData && !doubleData.isNaN())
 			return set.contains(doubleData);
 		else
 			return false;
